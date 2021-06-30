@@ -4,23 +4,26 @@ import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
 import CardIns from './Card';
 import Header from './Header';
 
-export default props => {
+export default function Home ({navigation}){
   return (
+    <>
+    <Header navigation={navigation} />
     <SafeAreaView style={style.Container}>
-      <Header />
       <ScrollView
        contentContainerStyle={style.Content}
        style={style.EditScroll}>
-        <CardIns />
-        <CardIns />
-        <CardIns />
-        <CardIns />
-        <CardIns />
-        <CardIns />
-        <CardIns />
+        <CardIns navigation= {navigation}/>
+        <CardIns navigation= {navigation}/>
+        <CardIns navigation= {navigation} />
+        <CardIns navigation= {navigation} />
       </ScrollView>
     </SafeAreaView>
+    </>
   );
+}
+
+Home.navigationOptions = {
+  title: 'Home',
 };
 
 const style = StyleSheet.create({

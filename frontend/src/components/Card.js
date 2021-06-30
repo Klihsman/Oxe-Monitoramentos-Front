@@ -3,7 +3,7 @@ import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import {Card, Button} from 'react-native-paper';
 
-const CardIns = () => {
+const CardIns = ({navigation}) => {
 
  return (
       <Card style={style.Card}>
@@ -16,11 +16,17 @@ const CardIns = () => {
         </View>
         <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
         <Card.Actions style={style.Actions}>
-          <Button color="#00838f">Ver detalhes</Button>
+        <Button
+        color="#00838f"
+        onPress={() => {navigation.navigate('Details');}}>Ver detalhes</Button>
         </Card.Actions>
       </Card>
   );
  };
+
+ CardIns.navigationOptions = {
+  title: 'Home',
+};
 
 const style = StyleSheet.create({
   Card: {

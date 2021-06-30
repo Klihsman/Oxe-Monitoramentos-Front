@@ -1,12 +1,15 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { StyleSheet, TextInput } from 'react-native';
 import {DefaultTheme, Appbar} from 'react-native-paper';
+import {Context, StateContext} from '../context/Context';
 
 
 const Header = ({navigation, status:status2}) => {
     const [status, setStatus] = useState(false);
+    const {state} = useContext(StateContext);
+    const { actions } = useContext(StateContext);
 
     const theme = {
         ...DefaultTheme,
@@ -33,21 +36,12 @@ const Header = ({navigation, status:status2}) => {
 
   return (
     <Appbar.Header theme={theme} style={style.Container}>
-      {status ?
-        <Appbar.BackAction onPress={_goBack} />
-        :
-        <></>
-      }
-      <TextInput
-        placeholder="Pesquise por uma instituição ou cidade"
-        style={status ? style.InputEnable : style.InputDisable}
-      />
+      <Appbar.BackAction onPress={_goBack} />
       <Appbar.Content
       title="Monitoramento"
       subtitle="Saúde próxima de você"
       style={{display: status ? 'none' : 'flex'}}
       />
-      <Appbar.Action style={{display: status ? 'none' : 'flex'}} icon="magnify" onPress={_handleSearch} />
       <Appbar.Action icon="dots-vertical" onPress={_handleMore} />
     </Appbar.Header>
   );
